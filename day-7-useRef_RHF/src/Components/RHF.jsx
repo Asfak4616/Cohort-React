@@ -16,7 +16,6 @@ const RHF = () => {
       <form
         onSubmit={handleSubmit((data) => {
           console.log(data);
-         
         })}
         className="flex p-6 rounded bg-white flex-col gap-4"
       >
