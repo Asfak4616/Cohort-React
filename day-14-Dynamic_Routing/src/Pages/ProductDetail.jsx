@@ -35,7 +35,7 @@ useEffect(()=>{
             <img
               src={singleProductData.image}
               alt={singleProductData.title}
-              className="w-full h-[450px] object-contain"
+              className="w-full h- [450px] object-contain"
             />
           </div>
 
