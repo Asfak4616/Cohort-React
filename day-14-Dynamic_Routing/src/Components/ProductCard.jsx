@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
     <div className="w-full max-w-sm overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
       
       {/* Product Image */}
-      <div onClick={()=>{navigate("/detail/1")}} className="h-72 bg-gray-100 p-5">
+      <div onClick={()=>{navigate(`/detail/${product.id}`)}} className="h-72 bg-gray-100 p-5">
         <img
           src={product.image}
           alt={product.title}
