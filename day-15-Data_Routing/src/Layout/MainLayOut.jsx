@@ -2,14 +2,13 @@ import React from 'react'
 import Navbar from '../Components/Navbar'
 import { Outlet } from 'react-router'
 
-const Home = () => {
+const MainLayOut = () => {
   return (
     <div>
- 
-      <h1>This is home</h1>
-
+      <Navbar/>
+      <Outlet/>
     </div>
   )
 }
 
-export default Home
+export default MainLayOut
