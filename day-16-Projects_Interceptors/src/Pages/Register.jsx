@@ -1,31 +1,10 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router";
-import { useForm } from "react-hook-form";
+
 import { Auth } from "../Context/AuthContext";
 
 const Register = () => {
-
-const {registerUser,setRegisterUser,setLoggedInUser} = useContext(Auth);
-
-
-  let {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-
-  let navigate = useNavigate();
-  let formSubmit = (data)=>{
-    let arr = [...registerUser,data]
-setRegisterUser(arr)
-alert("User Register Successfully!!")
-setLoggedInUser(data)
-localStorage.setItem('loggedInUser',JSON.stringify(data))
-localStorage.setItem("registerUser",JSON.stringify(arr))
-navigate("/main")
- reset()
-  }
+  const { registerUser, registerFromSubmit, setLoggedInUser } = useContext(Auth);
+ 
   return (
     <div className="h-screen overflow-hidden bg- gradient-to-br from-blue-50 via-white to-indigo-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6">
@@ -44,16 +23,17 @@ navigate("/main")
               Full Name
             </label>
 
-            <input 
-            {...register("name",{
-                required:"Name is required"
-            })
-            }
+            <input
+              {...register("name", {
+                required: "Name is required",
+              })}
               type="text"
               placeholder="Enter your name"
               className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+            {errors.name && (
+              <p className="text-red-500">{errors.name.message}</p>
+            )}
           </div>
 
           {/* Email */}
@@ -63,15 +43,16 @@ navigate("/main")
             </label>
 
             <input
-             {...register("email",{
-                required:"Email is required"
-            })
-            }
+              {...register("email", {
+                required: "Email is required",
+              })}
               type="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
           </div>
 
           {/* Password */}
@@ -81,19 +62,20 @@ navigate("/main")
             </label>
 
             <input
-             {...register("password",{
-                required:"password is required",
-                minLength:{
-                    value:6,
-                    message:"Minimum 6 Character is required "
-                }
-            })
-            }
+              {...register("password", {
+                required: "password is required",
+                minLength: {
+                  value: 6,
+                  message: "Minimum 6 Character is required ",
+                },
+              })}
               type="password"
               placeholder="Create a password"
               className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="text-red-500">{errors.password.message}</p>
+            )}
           </div>
 
           {/* Confirm Password */}
