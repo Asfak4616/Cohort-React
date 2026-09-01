@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, NavLink, useLocation } from "react-router";
+import { NavLink } from "react-router";
 import { useContext } from "react";
 import {Auth} from "../Context/AuthContext"
 import { toast } from "react-toastify";

@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-
+import React from "react";
 import { useAuth } from "../Hooks/UseAuth";
 const Login = () => {
  
-let {register,loginFormSubmit,handleSubmit,navigate,} = useAuth()
+let {register,loginFormSubmit,handleSubmit,navigate,errors} = useAuth()
   return (
     <div className="min-h-screen bg- gradient-to-br from-blue-50 via-white to-indigo-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">

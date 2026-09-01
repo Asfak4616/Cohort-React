@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-
-import { Auth } from "../Context/AuthContext";
+import React from "react";
+import { useAuth  } from "../Hooks/UseAuth";
 
 const Register = () => {
-  const { registerUser, registerFromSubmit, setLoggedInUser } = useContext(Auth);
+  const { handleSubmit,register ,errors,RegisterFormSubmit,navigate} = useAuth()
  
   return (
     <div className="h-screen overflow-hidden bg- gradient-to-br from-blue-50 via-white to-indigo-100 flex items-center justify-center px-4">
@@ -16,13 +15,12 @@ const Register = () => {
         </div>
 
         {/* Register Form */}
-        <form onSubmit={handleSubmit(formSubmit)} className="space-y-3">
+        <form onSubmit={handleSubmit(RegisterFormSubmit)} className="space-y-3">
           {/* Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Full Name
             </label>
-
             <input
               {...register("name", {
                 required: "Name is required",
