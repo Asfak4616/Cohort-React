@@ -1,6 +1,7 @@
 import React from "react";
 
-const About = () => {
+const About = ({greet}) => {
+  greet()
   console.log("About Rendering..");
   return (
     <div>

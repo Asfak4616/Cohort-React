@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home =  ({users}) => {
+const Home =  () => {
     console.log("Home Rendering..")
   return (
     <div>
