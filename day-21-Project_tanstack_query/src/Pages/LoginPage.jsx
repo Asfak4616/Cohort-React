@@ -1,10 +1,11 @@
 
 import React from "react";
 import { useAuth } from "../hooks/AuthHooks";
+const LoginPage = () => {
 
-
-const Login = () => {
   let {navigate,register,handleSubmit,errors,loginForm} = useAuth()
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
@@ -35,8 +36,8 @@ const Login = () => {
             </label>
 
             <input
-            {...register("email",{
-              required:"Email is required"
+            {...register('email',{
+              required:"email is required"
             })}
               id="email"
               type="email"
@@ -46,7 +47,7 @@ const Login = () => {
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
-             {errors.email &&  <p className="text-red">{errors.email.message}</p>}
+            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
 
           {/* Password */}
@@ -59,11 +60,11 @@ const Login = () => {
             </label>
 
             <input
-              {...register("password",{
+            {...register("password",{
               required:"Password is required",
               minLength:{
                 value:8,
-                message:"Minimum 8 Character is required"
+                message:"Minimum 8 character is required"
               }
             })}
               id="password"
@@ -74,7 +75,7 @@ const Login = () => {
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
-            {errors.password &&  <p className="text-red">{errors.password.message}</p>}
+            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
           </div>
 
           {/* Login Button */}
@@ -94,7 +95,7 @@ const Login = () => {
           <p className="text-gray-600 text-sm">
             Don't have an account?{" "}
             <button
-            onClick={()=>navigate("/register")}
+           onClick={()=>navigate("/register")}
               className="text-blue-600 font-semibold hover:underline"
             >
               Register
@@ -107,5 +108,5 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
 

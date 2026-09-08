@@ -1,18 +1,16 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Navigate, Outlet } from 'react-router'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router";
 
 const PublicRoutes = () => {
-    let {user} = useSelector((store)=>store.auth);
+ 
+  let { user } = useSelector((Store) => Store.auth);
 
-if(user){
-   return <Navigate to={"/main"}/>
-}
+  if (user) {
+    return <Navigate to={"/main"} />;
+  }
 
+  return <Outlet />;
+};
 
-
-  return <Outlet/>
-
-}
-
-export default PublicRoutes
+export default PublicRoutes;

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router";
+import { RouterProvider, createBrowserRouter, Navigate } from "react-router";
 import LoginPage from "../Pages/LoginPage";
 import AuthLayout from "../Layout/AuthLayout";
 import RegisterPage from "../Pages/RegisterPage";
@@ -10,20 +10,30 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../features/AuthSlice";
 import PublicRoutes from "./Protected/PublicRoutes";
 import ProtectedRoutes from "./Protected/ProtectedRoutes";
+import ShopPage from "../Pages/ShopPage";
+import AboutPage from "../Pages/AboutPage";
 
 const AppRoutes = () => {
-  let disPatch = useDispatch();
+
+  let dispatch = useDispatch();
+
   const hydrateUser = () => {
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
     if (!loggedInUser) {
-      toast.error("UnAuthorized User");
+      toast.error("UnAuthorized user");
       return;
     }
-    disPatch(addUser(loggedInUser));
+
+    dispatch(addUser(loggedInUser));
   };
+
   useEffect(() => {
     hydrateUser();
   }, []);
+
+
+
 
   let router = createBrowserRouter([
     {
@@ -34,6 +44,10 @@ const AppRoutes = () => {
           path: "",
           element: <AuthLayout />,
           children: [
+            {
+              index: true,
+              element: <Navigate to="/login" replace />,
+            },
             {
               path: "login",
               element: <LoginPage />,
@@ -58,6 +72,14 @@ const AppRoutes = () => {
               path: "",
               element: <HomePage />,
             },
+            {
+              path:"shop",
+              element:<ShopPage/>
+            },
+            {
+              path:"about",
+              element:<AboutPage/>
+            }
           ],
         },
       ],
