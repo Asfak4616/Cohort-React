@@ -8,9 +8,8 @@ import { addUser } from "../features/AuthSlice";
 export const useAuth = () => {
   let disPatch = useDispatch();
   let navigate = useNavigate();
-  const [registerUser, setRegisterUser] = useState(
-    JSON.parse(localStorage.getItem("registerUser")) || [],
-  );
+  let [registerUser, setRegisterUser] =
+    useState(JSON.parse(localStorage.getItem("registerUser")) || []);
 
   let {
     register,
@@ -32,10 +31,9 @@ export const useAuth = () => {
     });
     if (!user) {
       toast.error("Invalid Something..");
-      return;
     }
     disPatch(addUser(user));
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    localStorage.setItem("loggedInUser",JSON.stringify(user))
     toast.success("user Logged In");
     reset();
   };

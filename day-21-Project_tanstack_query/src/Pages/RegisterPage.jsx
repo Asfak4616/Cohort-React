@@ -1,30 +1,54 @@
 
 import React from "react";
 import { useAuth } from "../hooks/AuthHooks";
-const LoginPage = () => {
-
-  let {navigate,register,handleSubmit,errors,loginForm} = useAuth()
 
 
+const Register = () => {
+  let {navigate,register,handleSubmit,errors,registerForm} = useAuth()
+ 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
-      {/* Login Card */}
+      {/* Register Card */}
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
 
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">
-            Welcome Back
+            Create Account
           </h1>
 
           <p className="text-gray-500 mt-2">
-            Login to continue
+            Register to continue
           </p>
         </div>
 
-        {/* Login Form */}
-        <form onSubmit={handleSubmit(loginForm)} className="space-y-5">
+        {/* Register Form */}
+        <form onSubmit={handleSubmit(registerForm)} className="space-y-5">
+
+          {/* Name */}
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-semibold text-gray-700 mb-2"
+            >
+              Name
+            </label>
+
+            <input
+            {...register("name",{
+              required:"Name is required",
+            })}
+              id="name"
+              type="text"
+              placeholder="Enter your name"
+              required
+              className="w-full px-4 py-3 rounded-lg border border-gray-300
+              focus:outline-none focus:ring-2 focus:ring-blue-500
+              focus:border-blue-500 transition"
+            />
+           {errors.name &&  <p className="text-red-500">{errors.name.message}</p>}
+          </div>
 
           {/* Email */}
           <div>
@@ -36,8 +60,8 @@ const LoginPage = () => {
             </label>
 
             <input
-            {...register('email',{
-              required:"email is required"
+            {...register("email",{
+              required:"Email is required"
             })}
               id="email"
               type="email"
@@ -47,7 +71,7 @@ const LoginPage = () => {
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
-            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+            {errors.email &&  <p className="text-red-500">{errors.email.message}</p>}
           </div>
 
           {/* Password */}
@@ -64,7 +88,7 @@ const LoginPage = () => {
               required:"Password is required",
               minLength:{
                 value:8,
-                message:"Minimum 8 character is required"
+                message:"Minimum 8 Character is required"
               }
             })}
               id="password"
@@ -75,30 +99,30 @@ const LoginPage = () => {
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
-            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+            {errors.password &&  <p className="text-red-500">{errors.password.message}</p>}
           </div>
 
-          {/* Login Button */}
+          {/* Register Button */}
           <button
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-lg
             font-semibold hover:bg-blue-700 active:scale-[0.98]
             transition duration-200"
           >
-            Login
+            Register
           </button>
 
         </form>
 
-        {/* Register Section */}
+        {/* Login Section */}
         <div className="text-center mt-6">
           <p className="text-gray-600 text-sm">
-            Don't have an account?{" "}
+            Already have an account?{" "}
             <button
-           onClick={()=>navigate("/register")}
+             onClick={()=>navigate("/login")}
               className="text-blue-600 font-semibold hover:underline"
             >
-              Register
+              Login
             </button>
           </p>
         </div>
@@ -108,5 +132,5 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Register;
 

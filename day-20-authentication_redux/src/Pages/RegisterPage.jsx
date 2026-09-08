@@ -2,10 +2,10 @@
 import React from "react";
 import { useAuth } from "../hooks/AuthHooks";
 
+const RegisterPage = () => {
 
-const Register = () => {
-  let {navigate,register,handleSubmit,errors,registerForm} = useAuth()
- 
+let {navigate,register,handleSubmit,errors,registerForm} = useAuth()
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
@@ -37,7 +37,7 @@ const Register = () => {
 
             <input
             {...register("name",{
-              required:"Name is required",
+              required:"name is required"
             })}
               id="name"
               type="text"
@@ -47,7 +47,7 @@ const Register = () => {
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
-           {errors.name &&  <p className="text-red-500">{errors.name.message}</p>}
+            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
           </div>
 
           {/* Email */}
@@ -61,7 +61,7 @@ const Register = () => {
 
             <input
             {...register("email",{
-              required:"Email is required"
+              required:"email is required"
             })}
               id="email"
               type="email"
@@ -71,7 +71,7 @@ const Register = () => {
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
-            {errors.email &&  <p className="text-red-500">{errors.email.message}</p>}
+            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
 
           {/* Password */}
@@ -88,7 +88,7 @@ const Register = () => {
               required:"Password is required",
               minLength:{
                 value:8,
-                message:"Minimum 8 Character is required"
+                message:"Minimum 8 character is required"
               }
             })}
               id="password"
@@ -99,7 +99,7 @@ const Register = () => {
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
-            {errors.password &&  <p className="text-red-500">{errors.password.message}</p>}
+            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
           </div>
 
           {/* Register Button */}
@@ -119,7 +119,7 @@ const Register = () => {
           <p className="text-gray-600 text-sm">
             Already have an account?{" "}
             <button
-             onClick={()=>navigate("/login")}
+          onClick={()=>{navigate("/login")}}
               className="text-blue-600 font-semibold hover:underline"
             >
               Login
@@ -132,5 +132,5 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;
 

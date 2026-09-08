@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { RouterProvider, createBrowserRouter, Navigate } from "react-router";
+import { RouterProvider, createBrowserRouter } from "react-router";
 import LoginPage from "../Pages/LoginPage";
 import AuthLayout from "../Layout/AuthLayout";
 import RegisterPage from "../Pages/RegisterPage";
@@ -12,26 +12,18 @@ import PublicRoutes from "./Protected/PublicRoutes";
 import ProtectedRoutes from "./Protected/ProtectedRoutes";
 
 const AppRoutes = () => {
-
-  let dispatch = useDispatch();
-
+  let disPatch = useDispatch();
   const hydrateUser = () => {
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
     if (!loggedInUser) {
-      toast.error("UnAuthorized user");
+      toast.error("UnAuthorized User");
       return;
     }
-
-    dispatch(addUser(loggedInUser));
+    disPatch(addUser(loggedInUser));
   };
-
   useEffect(() => {
     hydrateUser();
   }, []);
-
-
-
 
   let router = createBrowserRouter([
     {
@@ -42,10 +34,6 @@ const AppRoutes = () => {
           path: "",
           element: <AuthLayout />,
           children: [
-            {
-              index: true,
-              element: <Navigate to="/login" replace />,
-            },
             {
               path: "login",
               element: <LoginPage />,
