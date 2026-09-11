@@ -1,17 +1,30 @@
 import React, { useEffect } from "react";
-import { RouterProvider, createBrowserRouter, Navigate } from "react-router";
-import LoginPage from "../Pages/LoginPage";
-import AuthLayout from "../Layout/AuthLayout";
-import RegisterPage from "../Pages/RegisterPage";
-import MainLayout from "../Layout/MainLayout";
-import HomePage from "../Pages/HomePage";
-import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
+import { RouterProvider, createBrowserRouter, Navigate } from "react-router";
+import { toast } from "react-toastify";
+// import LoginPage from "../Pages/LoginPage";
+// import AuthLayout from "../Layout/AuthLayout";
+// import RegisterPage from "../Pages/RegisterPage";
+// import MainLayout from "../Layout/MainLayout";
+// import HomePage from "../Pages/HomePage";
+// import { addUser } from "../features/AuthSlice";
+// import PublicRoutes from "./Protected/PublicRoutes";
+// import ProtectedRoutes from "./Protected/ProtectedRoutes";
+// import ShopPage from "../Pages/ShopPage";
+// import AboutPage from "../Pages/AboutPage";
+import { lazy } from "react";
+
+const LoginPage = lazy(() => import("../Pages/LoginPage"));
+const AuthLayout = lazy(() => import("../Layout/AuthLayout"));
+const RegisterPage = lazy(() => import("../Pages/RegisterPage"));
+const MainLayout = lazy(() => import("../Layout/MainLayout"));
+const HomePage = lazy(() => import("../Pages/HomePage"));
+const PublicRoutes = lazy(() => import("./Protected/PublicRoutes"));
+const ProtectedRoutes = lazy(() => import("./Protected/ProtectedRoutes"));
+const ShopPage = lazy(() => import("../Pages/ShopPage"));
+const AboutPage = lazy(() => import("../Pages/AboutPage"));
+
 import { addUser } from "../features/AuthSlice";
-import PublicRoutes from "./Protected/PublicRoutes";
-import ProtectedRoutes from "./Protected/ProtectedRoutes";
-import ShopPage from "../Pages/ShopPage";
-import AboutPage from "../Pages/AboutPage";
 
 const AppRoutes = () => {
 
