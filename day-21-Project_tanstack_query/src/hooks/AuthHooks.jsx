@@ -8,6 +8,8 @@ import { addUser } from "../features/AuthSlice";
 export const useAuth = () => {
   let disPatch = useDispatch();
   let navigate = useNavigate();
+
+  
   const [registerUser, setRegisterUser] = useState(
     JSON.parse(localStorage.getItem("registerUser")) || [],
   );

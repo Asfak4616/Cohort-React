@@ -1,5 +1,5 @@
- import React from 'react'
- import {createBrowserRouter, RouterProvider} from "react-router"
+ import React, { useEffect } from 'react'
+ import {createBrowserRouter, RouterProvider,Navigate} from "react-router"
 import AuthLayout from '../app/layout/AuthLayout'
 import LoginPage from '../features/auth/ui/Pages/LoginPage'
 import RegisterPage from '../features/auth/ui/Pages/RegisterPage'
@@ -10,7 +10,22 @@ import HomePage from '../shared/ui/pages/HomePage'
 import ProductPage from '../features/products/Ui/pages/ProductPage'
 import CartPage from '../features/cart/Ui/pages/CartPage'
 import OrderPage from '../features/Order/ui/pages/OrderPage'
+import { hydrateUser } from '../features/auth/api/authApi'
+import { addUser } from '../features/auth/state/authSlice'
  const AppRoutes = () => {
+
+useEffect(()=>{
+    (async()=>{ 
+try{
+let response = await hydrateUser();
+console.log(response)
+dispatch(addUser(response))
+}catch(error){
+    console.log("error in hydration",error)
+}
+    })()
+},[])
+
 
 let router = createBrowserRouter([
     {
@@ -22,9 +37,13 @@ let router = createBrowserRouter([
                 element:<AuthLayout/>,
                 children:[
                     {
-                        path:"",
-                        element:<LoginPage/>
-                    },
+              index: true,
+              element: <Navigate to="/login" replace />,
+            },
+            {
+              path: "login",
+              element: <LoginPage />,
+            },
                     {
                         path:"register",
                         element:<RegisterPage/>

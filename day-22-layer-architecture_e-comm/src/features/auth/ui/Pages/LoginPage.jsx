@@ -1,37 +1,53 @@
-import React from "react";
 
+import React from "react";
+import { useAuth } from "../../hooks/useAuthHook";
 const LoginPage = () => {
+
+  let {navigate,register,handleSubmit,errors,loginForm} = useAuth()
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+
       {/* Login Card */}
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+
         {/* Title */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
+          <h1 className="text-3xl font-bold text-gray-800">
+            Welcome Back
+          </h1>
 
-          <p className="text-gray-500 mt-2">Login to continue</p>
+          <p className="text-gray-500 mt-2">
+            Login to continue
+          </p>
         </div>
 
         {/* Login Form */}
-        <form className="space-y-5">
+        <form onSubmit={handleSubmit(loginForm)} className="space-y-5">
+
           {/* Email */}
           <div>
             <label
               htmlFor="email"
               className="block text-sm font-semibold text-gray-700 mb-2"
             >
-              Email
+              username
             </label>
 
             <input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
+            {...register('username',{
+              required:"username is required"
+            })}
+              id="text"
+              type="username"
+              placeholder="Enter your username"
               required
               className="w-full px-4 py-3 rounded-lg border border-gray-300
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
+            {errors.username && <p className="text-red-500">{errors.username.message}</p>}
           </div>
 
           {/* Password */}
@@ -44,6 +60,13 @@ const LoginPage = () => {
             </label>
 
             <input
+            {...register("password",{
+              required:"Password is required",
+              minLength:{
+                value:8,
+                message:"Minimum 8 character is required"
+              }
+            })}
               id="password"
               type="password"
               placeholder="Enter your password"
@@ -52,6 +75,7 @@ const LoginPage = () => {
               focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition"
             />
+            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
           </div>
 
           {/* Login Button */}
@@ -63,6 +87,7 @@ const LoginPage = () => {
           >
             Login
           </button>
+
         </form>
 
         {/* Register Section */}
@@ -70,16 +95,18 @@ const LoginPage = () => {
           <p className="text-gray-600 text-sm">
             Don't have an account?{" "}
             <button
-              onClick={() => navigate("/register")}
+           onClick={()=>navigate("/register")}
               className="text-blue-600 font-semibold hover:underline"
             >
               Register
             </button>
           </p>
         </div>
+
       </div>
     </div>
   );
 };
 
 export default LoginPage;
+
