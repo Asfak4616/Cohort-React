@@ -18,7 +18,7 @@ import { api } from "../../../config/api";
   try {
     let res = await api.get("/auth/me",{
        headers: {
-    'Authorization':' Bearer ${token}',// Pass JWT via Authorization header
+    'Authorization':` Bearer ${token}`,// Pass JWT via Authorization header
   }, 
     });
     console.log("response from hydrateUser api ", res);
