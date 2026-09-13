@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
-import { loginUserApi } from "../api/authApi";
+
 import {useDispatch} from "react-redux"
-import { toast } from "react-toastify";
-import { addUser } from "../state/authSlice";
+
+import { loginUserAction } from "../state/authAction";
 
 
 export const useAuth = () => {
@@ -14,7 +14,7 @@ export const useAuth = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors }, 
   } = useForm();
 
   const registerForm = (data) => {
@@ -22,9 +22,8 @@ export const useAuth = () => {
   };
   const loginForm = async (data) => {
   try{
-  let response = await loginUserApi(data)
-  dispatch(addUser(response))
-  toast.success("User logged In")
+    console.log("Thunk action triggered")
+dispatch(loginUserAction(data))
   }catch(error){
 console.log("form api error",error)
   }
