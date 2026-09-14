@@ -12,6 +12,7 @@ import CartPage from "../features/cart/Ui/pages/CartPage";
 import OrderPage from "../features/Order/ui/pages/OrderPage";
 import { useDispatch } from "react-redux";
 import { hydrateUserAction } from "../features/auth/state/authAction";
+import AboutPage from "../shared/ui/pages/AboutPage";
 const AppRoutes = () => {
 let dispatch = useDispatch()
 
@@ -71,9 +72,13 @@ let dispatch = useDispatch()
               element: <CartPage />,
             },
             {
-              path: "order",
+              path: "orders",
               element: <OrderPage />,
             },
+            {
+              path:"about",
+              element:<AboutPage/>
+            }
           ],
         },
       ],
